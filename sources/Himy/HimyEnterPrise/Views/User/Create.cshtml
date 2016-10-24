@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "新規アカウントの作成";
+}
+
+<h2>新規アカウントの作成</h2>
+<form id="createForm" onsubmit="return false;">
+    <div class="form-group">
+        <label>ユーザーID :</label>
+        <input type="text" name="userName" id="userName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>パスワード :</label>
+        <input type="password" name="password" id="password" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>メールアドレス :</label>
+        <input type="email" name="mailAddress" id="mailAddress" class="form-control" />
+    </div>
+    <input type="submit" id="submit" class="btn btn-primary btn-sm" value="作成" />
+    @Html.AntiForgeryToken()
+
+    <span id="message" style="color:red;"></span>
+</form>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/jqueryValidate")
+@Scripts.Render("~/Scripts/Himy/User/create.js")
+

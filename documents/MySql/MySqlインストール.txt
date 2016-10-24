@@ -1,0 +1,56 @@
+パスワードの再設定 URL
+http://qiita.com/ksugawara61/items/d8d69b7d57a3afcef980
+
+http://dev.mysql.com/downloads/mysql/
+URLからMySQL Community Server をクリック
+対象のリンクを選択し、移行後のページでNo thanks, just start my download.をクリックしダウンロードする
+
+C:\にフォルダごと解凍し、フォルダ名を'mysql'にリネームする。
+
+mysqlフォルダの中に'data'フォルダを新規作成する。
+
+cd c:\mysql\bin\
+mysqld --defaults-file=C:\mysql\my.ini --initialize --console
+
+エラーなく終わると、最後の行にlocalhost:rootのパスワードが表示されるので忘れずコピーする。
+もし、コピーをせず閉じてしまった場合、'data'フォルダの中身をすべて削除し、上記のコードを再実行する。
+
+エラーが発生し、再実行する場合も'data'フォルダの中身を削除する
+
+WindowsへMySQLサービスを登録する。
+CMDは管理者権限で実行する。
+sc create MySQL binPath= "c:\mysql\bin\mysqld.exe"
+
+Windowsのサービス管理からMySQLサービスを開始する。
+
+MySQLの初期パスワードを変更する
+
+mysql_secure_installation -u root -p
+WOB=A5<KcwlU
+newPass
+newPass
+N
+N
+Y
+Y
+Y
+Y
+
+
+MySqlへ接続する
+c:\mysql\bin\mysql -u root -p
+newPass
+
+接続できれば初期設定完了
+
+rootのパスワードの変更方法
+use mysql
+UPDATE user SET authentication_string=password('newPass') WHERE user='root';
+FLUSH PRIVILEGES;
+
+rootのパスワードの削除
+use mysql
+UPDATE user SET authentication_string='' WHERE user='root';
+FLUSH PRIVILEGES;
+
+

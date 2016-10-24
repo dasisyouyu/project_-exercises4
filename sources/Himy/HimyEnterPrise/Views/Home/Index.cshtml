@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@using Microsoft.AspNet.Identity
+<div class="jumbotron">
+    <h1>テストページ</h1>
+    <p class="lead">のちに本番ページへ置き換えます。</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>HimyTestフォーム</h2>
+        <p>ログインテストを行えます。</p>
+    </div>
+    @if (Request.IsAuthenticated)
+    {
+        <h1>@(User.Identity.GetUserName())</h1>
+        <div>
+            <form id="loginForm" onsubmit="return false;">
+
+
+            </form>
+        </div>
+    }
+    else
+    {
+        <div class="col-md-8">
+            <form id="loginForm" onsubmit="return false;">
+                <div class="form-group">
+                    <label>ユーザーID :</label>
+                    <input type="text" name="userName" id="userName" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>パスワード :</label>
+                    <input type="password" name="password" id="password" class="form-control" />
+                </div>
+                <a href="/User/Create" class="btn btn-default btn-sm">ユーザー新規作成</a>
+                <input type="submit" id="submit" class="btn btn-primary btn-sm" value="ログイン" />
+                <span id="message" style="color:red;"></span>
+            </form>
+        </div>
+    }
+</div>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/jqueryValidate")
+@Scripts.Render("~/Scripts/Himy/Home/home.js")
